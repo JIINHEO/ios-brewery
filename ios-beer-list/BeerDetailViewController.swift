@@ -18,13 +18,12 @@ class BeerDetailViewController: UITableViewController{
         title = beer?.name ?? "이름 없는 맥주"
         
         tableView = UITableView(frame: tableView.frame, style: .insetGrouped)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BeerDataListCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "BeerDetailListCell")
         tableView.rowHeight = UITableView.automaticDimension
         
         let frame = CGRect(x: 0, y: 0, width: view.frame.width , height: 300)
         let headerView = UIImageView(frame: frame)
         let imageURL = URL(string: beer?.imageURL ?? "")
-        //let imageURL = URL(string: beer?.image_url ?? "")
         
         headerView.contentMode = .scaleAspectFit
         headerView.kf.setImage(with: imageURL, placeholder: UIImage(named: "beer_icon"))
@@ -38,14 +37,16 @@ extension BeerDetailViewController{
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 3:
             return beer?.foodPairing?.count ?? 0
         default:
-            return 0
+            return 1
         }
     }
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -61,9 +62,9 @@ extension BeerDetailViewController{
             return nil
         }
     }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "BeerDataListCell")
-        
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "BeerDetailListCell")
         cell.textLabel?.numberOfLines = 0
         cell.selectionStyle = .none
         
@@ -75,7 +76,6 @@ extension BeerDetailViewController{
             cell.textLabel?.text = beer?.description ?? "설명 없음"
             return cell
         case 2:
-            //cell.textLabel?.text = beer?.brewers_tips ?? "팁 없음"
             cell.textLabel?.text = beer?.brewersTips ?? "팁 없음"
             return cell
         case 3:

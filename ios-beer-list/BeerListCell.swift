@@ -28,13 +28,13 @@ class BeerListCell: UITableViewCell {
         
         taglineLabel.font = .systemFont(ofSize: 14, weight: .light)
         taglineLabel.textColor = .systemBlue
-        taglineLabel.numberOfLines = 0
+        taglineLabel.numberOfLines = 2
         
         beerImageView.snp.makeConstraints{
             $0.centerY.equalToSuperview()
-            $0.leading.trailing.bottom.equalToSuperview().inset(20)
+            $0.leading.top.bottom.equalToSuperview().inset(20)
             $0.width.equalTo(80)
-            $0.height.equalTo(150)
+            $0.height.equalTo(120)
         }
         
         nameLabel.snp.makeConstraints{
@@ -55,7 +55,7 @@ class BeerListCell: UITableViewCell {
         
         beerImageView.kf.setImage(with: imageURL, placeholder:  #imageLiteral(resourceName: "beer_icon"))
         nameLabel.text = beer.name ?? "이름 없는 맥주"
-        //taglineLabel.text = beer.tagLine
+        taglineLabel.text = beer.tagLine
         
         accessoryType = .disclosureIndicator // 셀 우측에 > 모양
         selectionStyle = .none //셀을 클릭시 회색 음영이 발생하지 않음

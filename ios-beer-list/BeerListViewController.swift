@@ -44,7 +44,6 @@ extension BeerListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBeer = beerList[indexPath.row]
         let detailViewController =  BeerDetailViewController()
-        
         detailViewController.beer = selectedBeer
         self.show(detailViewController, sender: nil)
     }
@@ -72,7 +71,6 @@ private extension BeerListViewController {
             case (200...299): //성공
                 self.beerList += beers
                 self.currentPage += 1
-                print("\n\n\n\n\n\n beers = \(beers[0])\n\n\n\n\n\n\n\n")
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

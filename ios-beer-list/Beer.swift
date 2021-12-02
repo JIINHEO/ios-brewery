@@ -25,7 +25,7 @@ struct Beer: Codable {
         //#tag #good #hello
     }
     
-    //   Codingkeys
+    //   Codingkeys 대소문자 주의
     enum CodingKeys: String, CodingKey {
         case id, name, description
         case taglineString = "tagline"
